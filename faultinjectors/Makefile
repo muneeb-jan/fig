@@ -9,4 +9,4 @@ all: $(FAULTINJECTORS)
 	gcc $< -fPIC -shared -o $@ -ldl
 
 clean:
-	rm -rf $(FAULTINJECTORS)
+	rm -f $(FAULTINJECTORS)
