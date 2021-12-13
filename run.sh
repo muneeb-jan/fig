@@ -1,8 +1,8 @@
 #!/bin/sh
 
-<your-fault-injection-tool> read_EIO
-<your-fault-injection-tool> read_EINTR
-<your-fault-injection-tool> write_ENOSPC
-<your-fault-injection-tool> write_EIO
-<your-fault-injection-tool> select_ENOMEM
-<your-fault-injection-tool> malloc_ENOMEM
+python3 test_fault.py read_EIO
+python3 test_fault.py read_EINTR
+python3 test_fault.py write_ENOSPC
+python3 test_fault.py write_EIO
+python3 test_fault.py select_ENOMEM
+python3 test_fault.py malloc_ENOMEM
