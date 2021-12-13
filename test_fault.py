@@ -70,7 +70,7 @@ finally:
         state = "empty"
     else:
         diff = subprocess.run(["tar","df","temp.tar","content"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        if diff == None:
+        if diff.returncode == 0:
             state = "okay"
         else:
             state = "corrupted"
