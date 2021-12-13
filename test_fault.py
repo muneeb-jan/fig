@@ -17,6 +17,7 @@ try:
             print("ProcessState: success")
         else:
             print("ProcessState: exited")
+    
     elif sys.argv[1] == "read_EINTR":
         os.environ['LD_PRELOAD'] = 'faultinjection/fi_read_EINTR.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
@@ -24,36 +25,40 @@ try:
             print("ProcessState: success")
         else:
             print("ProcessState: exited")
+    
     elif sys.argv[1] == "write_ENOSPC":
-        os.environ['LD_PRELOAD'] = 'faultinjection/fi_read_EINTR.so'
+        os.environ['LD_PRELOAD'] = 'faultinjection/fi_write_ENOSPC.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
             print("ProcessState: success")
         else:
             print("ProcessState: exited")
+    
     elif sys.argv[1] == "write_EIO":
-        os.environ['LD_PRELOAD'] = 'faultinjection/fi_read_EINTR.so'
+        os.environ['LD_PRELOAD'] = 'faultinjection/fi_write_EIO.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
             print("ProcessState: success")
         else:
             print("ProcessState: exited")
+    
     elif sys.argv[1] == "select_ENOMEM":
-        os.environ['LD_PRELOAD'] = 'faultinjection/fi_read_EINTR.so'
+        os.environ['LD_PRELOAD'] = 'faultinjection/fi_select_ENOMEM.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
             print("ProcessState: success")
         else:
             print("ProcessState: exited")
-    elif sys.argv[1] == "select_ENOMEM":
-        os.environ['LD_PRELOAD'] = 'faultinjection/fi_read_EINTR.so'
+
+    elif sys.argv[1] == "malloc_ENOMEM":
+        os.environ['LD_PRELOAD'] = 'faultinjection/fi_malloc_ENOMEM.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
             print("ProcessState: success")
         else:
             print("ProcessState: exited")
     else:
-        print ("Incorrect input. " + sys.argv[1])
+        print ("Incorrect input.")
 
 except subprocess.TimeoutExpired:
     print("ProcessState: timeout")
