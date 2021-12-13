@@ -51,6 +51,7 @@ try:
             print("ProcessState: exited")
 
     elif sys.argv[1] == "malloc_ENOMEM":
+        removed = subprocess.run(["rm", "temp.tar"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         os.environ['LD_PRELOAD'] = 'faultinjectors/fi_malloc_ENOMEM.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
