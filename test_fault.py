@@ -19,6 +19,7 @@ try:
             print("ProcessState: exited")
     
     elif sys.argv[1] == "read_EINTR":
+        removed = subprocess.run(["rm", "temp.tar"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         os.environ['LD_PRELOAD'] = 'faultinjectors/fi_read_EINTR.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
@@ -27,6 +28,7 @@ try:
             print("ProcessState: exited")
     
     elif sys.argv[1] == "write_ENOSPC":
+        removed = subprocess.run(["rm", "temp.tar"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         os.environ['LD_PRELOAD'] = 'faultinjectors/fi_write_ENOSPC.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
@@ -35,6 +37,7 @@ try:
             print("ProcessState: exited")
     
     elif sys.argv[1] == "write_EIO":
+        removed = subprocess.run(["rm", "temp.tar"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         os.environ['LD_PRELOAD'] = 'faultinjectors/fi_write_EIO.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
@@ -43,6 +46,7 @@ try:
             print("ProcessState: exited")
     
     elif sys.argv[1] == "select_ENOMEM":
+        removed = subprocess.run(["rm", "temp.tar"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         os.environ['LD_PRELOAD'] = 'faultinjectors/fi_select_ENOMEM.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
