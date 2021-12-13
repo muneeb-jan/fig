@@ -11,7 +11,7 @@ print("Injected: " + sys.argv[1])
 
 try:
     if sys.argv[1] == "read_EIO":
-        os.environ['LD_PRELOAD'] = 'faultinjection/fi_read_EIO.so'
+        os.environ['LD_PRELOAD'] = 'faultinjectors/fi_read_EIO.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
             print("ProcessState: success")
@@ -19,7 +19,7 @@ try:
             print("ProcessState: exited")
     
     elif sys.argv[1] == "read_EINTR":
-        os.environ['LD_PRELOAD'] = 'faultinjection/fi_read_EINTR.so'
+        os.environ['LD_PRELOAD'] = 'faultinjectors/fi_read_EINTR.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
             print("ProcessState: success")
@@ -27,7 +27,7 @@ try:
             print("ProcessState: exited")
     
     elif sys.argv[1] == "write_ENOSPC":
-        os.environ['LD_PRELOAD'] = 'faultinjection/fi_write_ENOSPC.so'
+        os.environ['LD_PRELOAD'] = 'faultinjectors/fi_write_ENOSPC.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
             print("ProcessState: success")
@@ -35,7 +35,7 @@ try:
             print("ProcessState: exited")
     
     elif sys.argv[1] == "write_EIO":
-        os.environ['LD_PRELOAD'] = 'faultinjection/fi_write_EIO.so'
+        os.environ['LD_PRELOAD'] = 'faultinjectors/fi_write_EIO.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
             print("ProcessState: success")
@@ -43,7 +43,7 @@ try:
             print("ProcessState: exited")
     
     elif sys.argv[1] == "select_ENOMEM":
-        os.environ['LD_PRELOAD'] = 'faultinjection/fi_select_ENOMEM.so'
+        os.environ['LD_PRELOAD'] = 'faultinjectors/fi_select_ENOMEM.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
             print("ProcessState: success")
@@ -51,7 +51,7 @@ try:
             print("ProcessState: exited")
 
     elif sys.argv[1] == "malloc_ENOMEM":
-        os.environ['LD_PRELOAD'] = 'faultinjection/fi_malloc_ENOMEM.so'
+        os.environ['LD_PRELOAD'] = 'faultinjectors/fi_malloc_ENOMEM.so'
         x = subprocess.run(["tar", "-cf", "temp.tar", "content"], capture_output=True, timeout=5)
         if x.returncode  == 0:
             print("ProcessState: success")
